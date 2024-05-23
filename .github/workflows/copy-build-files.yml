@@ -6,7 +6,7 @@ on:
       - main  # 커밋이 발생할 브랜치를 지정합니다.
 
 jobs:
-  move-build-files:
+  copy-build-files:
     runs-on: ubuntu-latest
 
     steps:
