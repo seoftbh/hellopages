@@ -1,0 +1,28 @@
+name: Copy Build Files
+
+on:
+  push:
+    branches:
+      - main  # 커밋이 발생할 브랜치를 지정합니다.
+
+jobs:
+  copy-build-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Copy build files to root directory
+      run: |
+        cp -rf build/* .
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git commit -m 'Copy build files to root directory'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.SECRET }}
